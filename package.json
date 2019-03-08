@@ -1,0 +1,20 @@
+{
+  "name": "dom-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aclever/dom-tools.git"
+  },
+  "keywords": [],
+  "author": "Alex Clever",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aclever/dom-tools/issues"
+  },
+  "homepage": "https://github.com/aclever/dom-tools#readme"
+}
