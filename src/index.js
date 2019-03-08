@@ -31,7 +31,6 @@ export function removeClassName(elem, oldClass) {
     }).join(" ").trim();
 }
 
-
 export function getPageWidth() {
     const body = document.body;
     const html = document.documentElement;
@@ -69,3 +68,47 @@ export function getElementCoords(elem) {
         return {y: 0, x: 0};
     }
 }
+
+export function getElementStyleAttribute(oElm, strCssRule) {
+    let strValue = "";
+    if (document.defaultView && document.defaultView.getComputedStyle) {
+        strValue = document.defaultView.getComputedStyle(oElm, "").getPropertyValue(strCssRule);
+    }
+    else if (oElm.currentStyle) {
+        strCssRule = strCssRule.replace(/\-(\w)/g, function (strMatch, p1) {
+            return p1.toUpperCase();
+        });
+
+        strValue = oElm.currentStyle[strCssRule];
+    }
+    return strValue;
+}
+
+export function getImageSize(imageUrl, cb) {
+    let container = document.createElement('div');
+    container.id = "imagePreloadTest";
+
+    container.style = 'opacity: 0;\n' +
+        '  position: fixed;\n' +
+        '  bottom: 0;\n' +
+        '  right: 0;';
+
+    let image = document.createElement('img');
+    image.src = imageUrl;
+
+    container.appendChild(image);
+    document.body.appendChild(container);
+
+    image.onload = () => {
+        let width = image.clientWidth;
+        let height = image.clientHeight;
+
+
+        cb && cb({
+            width: width,
+            height: height
+        });
+
+        container.remove();
+    };
+};
